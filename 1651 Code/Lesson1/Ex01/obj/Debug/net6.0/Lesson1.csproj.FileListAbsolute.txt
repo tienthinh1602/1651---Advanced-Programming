@@ -1,0 +1,30 @@
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\bin\Debug\net6.0\Lesson1.exe
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\bin\Debug\net6.0\Lesson1.deps.json
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\bin\Debug\net6.0\Lesson1.runtimeconfig.json
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\bin\Debug\net6.0\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\bin\Debug\net6.0\ref\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\bin\Debug\net6.0\Lesson1.pdb
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.csproj.AssemblyReference.cache
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.AssemblyInfoInputs.cache
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.AssemblyInfo.cs
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.csproj.CoreCompileInputs.cache
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\ref\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.pdb
+C:\Users\Dell\OneDrive\Documents\1651\Lesson1\obj\Debug\net6.0\Lesson1.genruntimeconfig.cache
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\bin\Debug\net6.0\Lesson1.exe
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\bin\Debug\net6.0\Lesson1.deps.json
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\bin\Debug\net6.0\Lesson1.runtimeconfig.json
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\bin\Debug\net6.0\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\bin\Debug\net6.0\ref\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\bin\Debug\net6.0\Lesson1.pdb
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.csproj.AssemblyReference.cache
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.AssemblyInfoInputs.cache
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.AssemblyInfo.cs
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.csproj.CoreCompileInputs.cache
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\ref\Lesson1.dll
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.pdb
+C:\Users\Dell\OneDrive\Documents\University\Advanced Programming (1651)\1651 Code\Lesson1\Ex01\obj\Debug\net6.0\Lesson1.genruntimeconfig.cache

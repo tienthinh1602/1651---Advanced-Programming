@@ -1,0 +1,12 @@
+UML Tools:
+	Enterprise Architect: https://sparxsystems.com/products/ea/
+	Visual Paradigm: https://www.visual-paradigm.com/
+	UMLet: https://www.umlet.com/
+	Microsoft Visio: https://www.microsoft.com/en-us/microsoft-365/p/visio-professional-2021/cfq7ttc0hgxw?activetab=pivot:overviewtab
+
+Introduction to UML - "UML Basic.pdf"
+	Behavioural: usecase, Activity, Sequence
+	Structural: Class, Component, Deployment
+
+Watson's Pet Store example
+	Walkthrough .docx and draw diagrams: usecase, activity, sequence, class.

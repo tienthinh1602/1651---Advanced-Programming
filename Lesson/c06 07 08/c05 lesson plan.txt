@@ -1,0 +1,369 @@
+https://refactoring.guru/design-patterns
+
+c05
+Design Pattern Overview: focus on class diagrams i.e. how classes behave,  are structured and created.
+extensible, testable, maintainable
+
+creational: factory, singleton
+
+###############################
+Singleton: https://refactoring.guru/design-patterns/singleton
+	GOF: Ensure a class only has one instance, and provide a global point of access to it
+
+Scenario: A system has one and only one printer and all components share the same printer
+
+Printer class
+	ID, PrintDocument()
+	exp: Singleton section
+
+Main:
+	2 printers have the same ID
+
+
+###############################
+Factory: https://refactoring.guru/design-patterns/factory-method
+	GOF: Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses
+
+Scenario: In WatsonsPetStore, a customer has one pet which could be a cat, a dog, a fish
+
+PetType enum: DOG, CAT, FISH
+IPet: a pet interface with Name, Weight, BirthYear and GetAge()
+
+Dog: IPet
+	bool IsVaccinated
+
+WaterType enum: FRESH, SALT
+Fish: IPet
+	WaterType Environment
+
+Begin/Customer
+	public void SetPet(PetType pt, 
+            string name, double weight, int birthYear)
+
+    exp: 
+    	Customer knows how to create a pet, violating Single responsibility principle in SOLID
+
+    	if more pets are introduced, this method will grow bigger and bigger, violating Open-closed principle (open to extension, closed to modification) in SOLID
+
+--> Static Factory
+StaticPetFactory
+	public static IPet CreatePet(PetType pt,
+            string name, double weight, int birthYear);
+
+    exp: still violate Open-closed
+    it is not the factory method pattern in GOF
+
+Customer no longer has SetPet() 
+
+Run and test
+
+
+--> Factory Method
+*** FactoryMethod.png
+DogFactory creates dogs
+FishFactory creates fish
+
+Run and test
+
+
+
+
+
+###############################
+c06
+behavioural: strategy, observer
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Strategy is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+https://refactoring.guru/design-patterns/strategy
+
+Scenario: In WatsonsPetStore, after placing an order, customer can check the shipping cost of the order via Shipping Cost Service (SCS). Order can be shipped via various shipping methods which are Air, Train and Truck and each method has different cost.
+
+New files in Model folder
+Product.cs: Name, Price, Weight
+ShippingMethod.cs (enum): AIR, TRAIN, TRUCK
+Order.cs: 
+	public List<Product> Products { get; set; }
+
+	public ShippingMethod ShipVia { get; set; } 
+            = ShippingMethod.TRUCK;
+    constructor: default 3 products
+    GetWeight()
+
+
+
+Begin/ShippingCostService.cs
+	 public double CalculateShippingCost(Order order)
+	 double CalculateForAir(Order order)
+	 double CalculateForTrain(Order order)
+	 double CalculateForTruck(Order order)
+
+
+Run and test
+--> violate Single Responsiblily in Order because Order knows shipping methods
+--> violate Open-Closed in ShippingCostService
+
+
+
+==> Strategy Pattern "Strategy.png"
+	ShippingCostService has ShippingStrategry
+	ShippingCostService takes in an Order and calculate the cost using its shipping strategy
+
+New folder End
+ShippingStrategy/IShippingStrategy
+	double CalculateCost(Order order);
+ShippingStrategy/AirShippingStrategy
+ShippingStrategy/TrainShippingStrategy
+ShippingStrategy/TruckShippingStrategy
+
+End/ShippingCostService
+	public IShippingStrategy ShippingStrategy { private get; set; }
+
+    public ShippingCostService(IShippingStrategy ss)
+    {
+        ShippingStrategy = ss;
+    }
+
+    public double CalculateShippingCost(Order order)
+    {
+        return ShippingStrategy.CalculateCost(order);
+    }
+
+Run and test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Observer: is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing
+https://refactoring.guru/design-patterns/observer
+
+Scenario: In WatsonsPetStore, Customer which is either standard or gold member would like to automatically receive information/announcement/discount... from the store
+
+New folder Customer
+ICustomer
+	int ID { get; set; }
+    string Contact { get; set; }
+    string Name { get; set; }
+    void Update(int dataId);
+
+StandardCustomer : ICustomer
+	public NotificationCenter Notifier { get; set; }
+
+	public void Subscribe(NotificationCenter nc)
+    {
+        nc.Register(this);
+        Notifier = nc;
+    }
+    public void Update(int dataId)
+    {
+        var data = Notifier.DataSource[dataId];
+        Console.WriteLine("StandardCustomer_{0} has received data: {1}",
+            ID, data);
+    }
+
+GoldMemberCustomer : ICustomer
+	public NotificationCenter Notifier { get; set; }
+	public void Subscribe(NotificationCenter nc)
+	public void Update(int dataId)
+
+
+New folder Notification
+abstract NotificationCenter
+	protected List<ICustomer> CustomerObservers { get; set; }
+    public List<string> DataSource { get; private set; }
+    public abstract void Notify();
+
+    public void Register(ICustomer cust)
+    {
+        if (!CustomerObservers.Any(c => c.ID == cust.ID))
+        {
+            CustomerObservers.Add(cust);
+        }
+
+    }
+    public void Unregister(ICustomer cust)
+    {
+        CustomerObservers.RemoveAll(c => c.ID == cust.ID);
+    }
+
+Advertising : NotificationCenter
+	public override void Notify()
+    {
+        var dataId = DataSource.Count - 1;
+        CustomerObservers.ForEach(cust => cust.Update(dataId));
+    }
+
+--> easily extend NotificationCenter to have different notifiers
+--> Customer can be extended to have list of notifiers
+
+	ICustomer
+	void Update(int notifierId, int dataId);
+
+	OtherNotifier
+	public override void Notify()
+    {
+        var dataId = DataSource.Count - 1;
+        CustomerObservers.ForEach(cust => cust.Update(this.ID, dataId));
+    }
+
+
+Run and test
+
+################################
+
+c07
+structural: bridge, decorator
+
+Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
+
+abstraction: works to be done
+implementation: persons who do the work
+
+
+Scenario: An appointment includes a service with service duration (grooming, vital care, vet service ...) and various types: Emergency, Scheduled, Priority. 
+
+A junior/senior service worker, who could conduct services at different pace, is selected for an appointment.  
+
+An appointment should display the estimated complete time based on customer's arrival time. If complete time is after 6pm, the appointment is rescheduled to 8am next day and displays another estimated complete time. 
+
+==> permutation between appointment types and workers exponentially increase the number of classes e.g. EmergencyJunior, EmergencySenior ....
+
+*** Decorator.png to explain
+
+Coding:
+New folder Appointment
+new abstract class Appointment
+    public Service Service { get; set; }
+    //Service is the task to be done in this appointment
+    public IServiceWorker ServiceWorker { get; set; }
+    //ServiceWorker is to perform the task
+
+    public DateTime ArrivalTime { get; set; }
+    public Appointment(Service service, IServiceWorker sw)
+    public abstract DateTime EstimateCompleteTime();
+
+new class Emergency : Appointment 
+//emergency appointment has to be attended immediately and completed asap
+    public override DateTime EstimateCompleteTime()
+    {
+        double duration = ServiceWorker.TimeTaken(this.Service);
+        return ArrivalTime.AddHours(duration);
+    }
+
+new class Scheduled : Appointment
+//scheduled appointment may be rescheduled if estimated complete time is after 18:00
+    public override DateTime EstimateCompleteTime()
+    {
+        double duration = ServiceWorker.TimeTaken(Service);
+        var completeTime = ArrivalTime.AddHours(duration);
+
+        if (completeTime.TimeOfDay > new TimeSpan(18, 0, 0))
+        {
+            //complete time is after 18:00
+            //reschedule this appointment to 8am next day
+            ArrivalTime = ArrivalTime.AddDays(1).Date
+                + new TimeSpan(8, 0, 0);
+
+            completeTime = ArrivalTime.AddHours(duration);
+        }
+
+        return completeTime;
+    }
+
+
+New folder Services
+new class Service, 
+    public double Duration { get; set; }
+new class Haircut : Service, VitalCare : Service
+
+
+new file ServiceWorker.cs
+new interface IServiceWorker
+    double TimeTaken(Service service);
+
+new class JuniorWorker : IServiceWorker
+    public double TimeTaken(Service service)
+    {
+        return service.Duration + 0.75; //need 45 minutes more
+    }
+
+new class SeniorWorker : IServiceWorker
+    public double TimeTaken(Service service)
+    {
+        return service.Duration - 0.5; //save 30 minutes
+    }    
+
+
+Run and test
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+
+
+Scenario: A pizza store has pizzas of 3 sizes: small, medium and large. Customers can order an pizza with different toppings: Ham, Cheese, Pepper. Moreover, customers can mix and match the toppings in whatever they like e.g. ham + cheese + pepper, double ham + pepper, double cheese + pepper ....
+Finally, based on selected toppings, the final cost of a pizza is calculated.
+
+==> inheritance is inapplicable in this scenario since toppings are dynamically selected
+
+==> draw a layer-wrapping pizza
+*** Decorator.png to explain
+
+new folder Model
+new abstract class Pizza
+    public string Description { get; set; }
+    public abstract string GetDescription();
+    public abstract double CalculateCost();
+
+new class PizzaDecorator : Pizza
+    protected Pizza _pizza; 
+    //this is wrapped pizza,
+    //this decorator extends functionality of the pizza
+
+    public PizzaDecorator(Pizza pizza)
+    {
+        _pizza = pizza;
+    }
+
+    public override string GetDescription()
+    {
+        return _pizza.Description;
+    }
+
+    public override double CalculateCost()
+    {
+        return _pizza.CalculateCost();
+    }
+
+
+new folder ConcreteComponents
+new class SmallPizza : Pizza
+    Description = "Small Pizza";
+    return 3.00;
+
+new class MediumPizza : Pizza
+    Description = "Medium Pizza";
+    return 6.00;
+
+new class LargePizza : Pizza
+    Description = "Large Pizza";
+    return 9.00;
+
+
+new folder ConcreteDecorators
+new class Cheese : PizzaDecorator
+    Description = "Cheese";
+    return String.Format("{0}, {1}", _pizza.GetDescription(), Description);
+    return _pizza.CalculateCost() + 1.25;
+
+new class Ham : PizzaDecorator
+    Description = "Ham";
+    return String.Format("{0}, {1}", _pizza.GetDescription(), Description);
+    return _pizza.CalculateCost() + 1.00;
+
+new class Peppers : PizzaDecorator
+    Description = "Peppers";
+    return String.Format("{0}, {1}", _pizza.GetDescription(), Description);
+    return _pizza.CalculateCost() + 2.00;
+
+
+Run and test

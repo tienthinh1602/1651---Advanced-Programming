@@ -1,0 +1,66 @@
+procedural: php and database.php gets bigger and bigger
+procedural to OOP: a house with different parts windows are made
+
+independently doors are made independently walls, floors, lights...
+
+programs are split into different parts working together.
+Those are different objects
+
+define an object: an apple, a motorbike, a cup, a light-bulb
+
+*** "COMPARING 2 objects.png"
+2 motorbikes on the road are 2 different objects classified by colour, size, speed
+--> objects are differentiated by ID, attributes and actions
+
+what do you need first to start building an object? -- a blueprint/ a design
+
+*** CLASS_motorcycle_blueprint.jpg
+-->class - a blueprint to build multiple houses
+
+
+
+/**Motorbike1.java*/
+
+instance variable - the attributes
+
+methods - the actions
+
+After the blueprint/design/class, we need a production line
+to actually make an object
+*** CONSTRUCTOR_motorcycle-factory-build.jpg
+constructor (~production line: day chuyen san xuat -- show IMAGE)
+    //constructor
+    //A constructor in Java is a special method that is used to initialize objects.
+    //The constructor is called when an object of a class is created.
+    //It can be used to set initial values for object attributes
+
+    //default constructor, automatically created if there is no constructor
+	//parameterized constructor, manually created
+
+
+/**TestSystem.java*/
+main method to run program
+demo and lead objects
+lead.speed = 45; // this is not OOP
+
+==>Motorbike2.java
+
+
+/**Motorbike2.java*/
+
+//instance variable - the attributes
+//it should always be private
+//what is private? public?
+private double speed = 0.0f; //no initialization in constructors
+
+getters & setters: Property
+
+
+/**TestSystem.java*/
+wave object
+//toString method, if commented: sout memory location
+
+
+/**Driver.java*/
+how classes work together
+/**TestSystem.java*/

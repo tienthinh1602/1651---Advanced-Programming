@@ -1,0 +1,72 @@
+###Exception###
+Plain Code 
+run main with valid inputs
+run main with invalid inputs (string)
+
+===> FormatException
+===> this error cannot be predicted while coding ===> runtime error (known only when running)
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Try Catch Finally
+try-catch FormatException
+now you can type a string 
+
+run divide by 0. Another Exception
+	catch DivideByZeroException
+	
+What about all other unknown cases e.g. Console.WriteLine("Hello World".Substring(20));
+	catch System.Exception e
+	now we need "e" to get information about exception
+	Console.WriteLine("Something went wrong");
+    Console.WriteLine(e.Message);
+	
+finally block -- always run even if exception
+	demo with catch Exception
+	demo without catch Exception
+
+
+*** exception-classes.png
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+Validation with TryCatch
+
+//Write a program to ask users to enter an age.
+//an age is from 0 to 100
+//if users enter a value outside the range,
+//print out Invalid Age and ask users to enter again
+//if users' input is not a number
+//print out "Your input is not a number" and ask users to enter again
+
+code demo
+
+
+~~~~~~~~~~~~~~~~~~~~~~
+StackTrace
+in main, CallMethodA
+in CallMethodA, CallMethodB
+in CallMethodB, CallMethodC
+in CallMethodC, ScanFile("abc/xyz.txt");
+
+Run and explain StackTrace
+
+
+~~~~~~~~~~~~~~~~~~~~~~
+Throw an exception
+in CallMethodC, Add(1, 0)
+
+
+private static int Add(int a, int b)
+{
+    if (a == 0 || b == 0)
+    {
+        //actively raise an exception
+        var e = new System.Exception("a or b equals to 0");
+        throw e;
+    }
+
+    return a + b;
+}
+
+
+Run and check the stack trace

@@ -1,0 +1,64 @@
+//NTU java
+//Lynda OOP design videos
+
+/** INHERITANCE */
+Introduce to Football
+
+Design and draw FootballPlayer class with attrs and methods
+Desgin and draw Forward class with attrs and methods
+==> repeat attrs and methods
+==> OOP inheritance to solve prob, draw class diagram, 
+    introduce terms: superclass, subclass, parent and child
+
+Exp FootballPlayer class
+Exp Forward class and its setters in the constructor
+
+Run TestInheritance to show that Forward inherit FootballPlayer
+
+~~~~~Constructor~~~~~
+Raise qns about default constructor with demoFwd
+	***what are the results of 2 sout?
+
+Design and draw GoalKeeper with an extra method catchBall()
+Briefly exp GoalKeeper class
+
+Run demoGK in test to exp def constructor in GoalKeeper
+
+Compare def constructors of Forward and GoalKeeper 
+==> introduce super() and implicit super() if it's not provided
+==> compare super with this
+==> phrase: parent to be born before child
+
+Demo with and without this line: "super(name, number);" in GoalKeeper's constructor
+=> implicit super() and superclass should always have def constructor
+
+
+~~~~~Overriding~~~~~
+Exp overriding method pass() in GoalKeeper which never uses pass() in FootballPlayer
+*Inherit then do differently*
+Demo practice() in FootballPlayer by GoalKeeper
+
+Demo practicePassing() in GoalKeeper
+==> how to make a short pass as a football player???
+==> super.pass() vs. this.pass()
+
+SINGLE INHERITANCE vs MULTIPLE INHERITANCE
+
+
+/** POLYMORPHISM */
+
+Exp the term: many forms
+
+Exp shoot() in 3 classes
+Run test for shoot()
+==> this is POLYMORPHISM
+
+
+Draw and exp var vs object and the mechanism under POLYMORPHISM in TestPolymorphism
+Run test for shoot() using foreach
+
+Exp casting through test code
+Exp instanceof 
+
+toString() in FootballPlayer. It is an overriding method from Object. *Object is the parent of all classes in Java*
+Run test for toString()

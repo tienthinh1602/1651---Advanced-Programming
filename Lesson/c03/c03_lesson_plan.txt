@@ -1,0 +1,79 @@
+/**ABSTRACTION*/
+when we talk about a table, we know what it is in general.
+We don't go into details whether it's wooden or metal; one leg or 4 legs...
+Only when we buy a table, we need to be specific: wooden or metal, one leg or 4 legs....
+
+
+Similarly, when we talk about a football player, we know he/she can shoot, pass, has name and number
+However, when we create a fbp, we have to know whether he/she is a fw, mf, df, or gk
+
+Draw class diagram of FootballPlayer and FW, MF, DF, GK extending FP
+We don't want to create a vague FootballPlayer instance, 
+but we still need all other classes 
+	to extend FP 
+	to create objects
+==> make FP abstract, FP cannot be instantiated.
+==> each FP must be an instanceof FW, MF, DF, or GK, not a vague FP
+
+Exp "public abstract class FootballPlayer"
+Exp other methods the same as before
+
+Exp abstract method signature. 
+Abstract class must have at least one abstract method   
+	/**
+     * ABSTRACT METHODS of an abstract class
+     */
+    public abstract void shoot();
+    public abstract void pass();
+	
+Show FW, GK extending FP and implementing shoot() and pass() through overriding
+
+Run test code
+
+Demo new abstract method tackle()
+
+
+/**INTERFACE*/
+Exp the concept via this image: https://goo.gl/images/ZJDT4u
+	we can call, and talk
+	we can not do Math
+
+	An interface is a "contract" for what the classes can do. 
+	It, however, does not specify how the classes should do it.
+	Similar to signing a contract to build a house, we only care the result i.e. the house, 
+	we don't care how it is built
+
+Exp Calculator interface and 2 implementing classes
+Run test
+
+Interface vs. Abstract
+Using Interface instead of Class
+
+Demo new method in an interface and implementation
+
+Implement multiple interfaces
+
+
+/**ENCAPSULATION - ACCESS MODIFIER*/
+public, private, protected, internal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
